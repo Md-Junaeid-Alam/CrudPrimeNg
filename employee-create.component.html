@@ -1,0 +1,88 @@
+<br>
+<p-panel header="Employee Create" [toggleable]="true">
+
+    <form [formGroup]="employeeForm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Employee</span>
+                          </div>
+                          <input
+                            type="text"
+                            id="employeeName"
+                            formControlName="employeeName"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Age</span>
+                          </div>
+                          <input
+                            type="number"
+                            id="employeeAge"
+                            formControlName="employeeAge"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">employee<span class="required">&nbsp;*</span></span>
+                      </div>
+                      <select formControlName="employeeInfo" class="p-inputtext-sm form-control uppercase" 
+                            >
+                        <option *ngFor="let emp of employeeinfoSelectedList" [ngValue]="emp.value">
+                          {{ emp.label | uppercase }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-primary" (click)="onSubmit()">{{buttonName}}</button>
+                  <!-- <button pButton type="button" label="P-button" (click)="onSubmit()"></button> -->
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+</p-panel>
+<br>
+<p-panel header="Employee List" [toggleable]="true">
+
+    <p-table [value]="employeeinfoList" styleClass="p-datatable-striped" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>SL</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>age</th>
+                <th>age</th>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-i="rowIndex" let-product>
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{product.employeeId}}</td>
+                <td>{{product.employeeName}}</td>
+                <td>{{product.employeeAge}}</td>
+                <td><button type="button" class="btn btn-primary" (click)="editData(product)">Edit</button></td>
+               
+            </tr>
+        </ng-template>
+    </p-table>
+
+</p-panel>
